@@ -45,6 +45,7 @@
             this.picture_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture_box.TabIndex = 0;
             this.picture_box.TabStop = false;
+            this.picture_box.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picture_box_MouseClick);
             // 
             // menu
             // 

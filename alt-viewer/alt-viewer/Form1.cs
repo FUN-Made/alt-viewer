@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
+//using System.Runtime.InteropServices;
 using System.IO;
 
 namespace alt_viewer
@@ -44,10 +44,9 @@ namespace alt_viewer
                     {
                         directory_files.Add(file);
                     }
-                    pos = directory_files.IndexOf(openfile_window.FileName);
-                    this.Text = pos + 1 + "/" + directory_files.Count + " " + picture_box.ImageLocation.Substring(openfile_window.FileName.LastIndexOf(@"\")).Substring(1);
-                    //
                 }
+                pos = directory_files.IndexOf(openfile_window.FileName);
+                this.Text = pos + 1 + "/" + directory_files.Count + " " + picture_box.ImageLocation.Substring(openfile_window.FileName.LastIndexOf(@"\")).Substring(1);
             }
 
         }
@@ -64,17 +63,17 @@ namespace alt_viewer
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((folder != "") & (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)) navigate_img(e);
+            if ((folder != "") & (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)) navigate_img(e.KeyCode);
         }
 
-        private void navigate_img(KeyEventArgs e)
+        private void navigate_img(Keys e)
         {
-            if (e.KeyCode == Keys.Right) //следующее изображение
+            if (e == Keys.Right) //следующее изображение
             {
                 pos++;
             }
 
-            if (e.KeyCode == Keys.Left) //предыдущее изображение
+            if (e == Keys.Left) //предыдущее изображение
             {
                 pos--;
             }
@@ -83,6 +82,17 @@ namespace alt_viewer
             picture_box.ImageLocation = directory_files.ElementAt(pos);
             this.Text = pos+1 + "/" + directory_files.Count + " " + picture_box.ImageLocation.Substring(openfile_window.FileName.LastIndexOf(@"\")).Substring(1);
         }
+
+        private void picture_box_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (folder != "")
+            {
+                if (e.Button == MouseButtons.XButton1) navigate_img(Keys.Right);
+                if (e.Button == MouseButtons.XButton2) navigate_img(Keys.Left);
+            }
+            
+        }
+
 
 
     }
