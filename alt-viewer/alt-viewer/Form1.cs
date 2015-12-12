@@ -38,8 +38,9 @@ namespace alt_viewer
                 {
                     folder = tmp_folder;
                     directory_files.Clear();
-                    foreach (string file in Directory.EnumerateFiles(folder + @"\", "*.*", SearchOption.TopDirectoryOnly).Where(s => s.EndsWith(".jpg") 
-                        || s.EndsWith(".jpeg") || s.EndsWith(".bmp") || s.EndsWith(".png") || s.EndsWith(".gif") || s.EndsWith(".wmf")))
+                    foreach (string file in Directory.EnumerateFiles(folder + @"\", "*.*", SearchOption.TopDirectoryOnly).Where(s => s.EndsWith(".jpg", true, null)
+                        || s.EndsWith(".jpeg", true, null) || s.EndsWith(".bmp", true, null) || s.EndsWith(".png", true, null) || s.EndsWith(".gif", true, null)
+                        || s.EndsWith(".wmf", true, null)))
                     {
                         directory_files.Add(file);
                     }
